@@ -67,8 +67,8 @@ function completarFila(element,index,arr) {
   <td>${element.celular}</td>
   <td>${element.fecha_registro}</td>
   <td>
-  <a href='actualizar.html?id=${element.id_cliente}' class='btn btn-warning btn-sm'>Actualizar</a>
-  <a href='eliminar.html?id=${element.id_cliente}' class='btn btn-danger btn-sm'>Eliminar</a>
+  <a href='actualizar.html?id=${element.id_cliente}' class='btn btn-warning btn-sm text-dark'><b>Actualizar</b></a>
+  <a href='eliminar.html?id=${element.id_cliente}' class='btn btn-danger btn-sm text-white'><b>Eliminar</b></a>
   </td>
   </tr>`
 }
@@ -167,7 +167,7 @@ function completarFormulario(element, index, arr){
   consultar api rest para obtener los datos del usuario nombre y apellidos */
 
   function validacionFormulario(){
-    var id_cliente = document.getElementById("tex_id_cliente").value;
+    var id_cliente = document.getElementById("txt_id_cliente").value;
     var dv_cliente = document.getElementById("txt_dv").value;
     var nombre_cliente = document.getElementById("txt_nombres").value;
     var apellido_cliente = document.getElementById("txt_celular").value;
