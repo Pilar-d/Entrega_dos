@@ -101,7 +101,7 @@ function actualizarCliente(){
   fetch("http://144.126.136.43/api/cliente/"+g_id_cliente, requestOptions)
     .then((response) => {
       if(response.status == 200){
-        //alert("usuario actualizado")
+        //alert("cliente actualizado")
         window.location.href = "listar.html";
 
     }
@@ -161,11 +161,7 @@ function completarFormulario(element, index, arr){
 }
 
 
-
- /*  obtener id de usuario a eliminar
-
-  consultar api rest para obtener los datos del usuario nombre y apellidos */
-
+//funcion de validacion - modificar y arreglar
   function validacionFormulario(){
     var id_cliente = document.getElementById("txt_id_cliente").value;
     var dv_cliente = document.getElementById("txt_dv").value;
@@ -194,6 +190,8 @@ function completarFormulario(element, index, arr){
     }
     
   }
+//
+
 
   //funcion eliminar
 
@@ -222,14 +220,11 @@ function completarFormulario(element, index, arr){
     obtenerDatosEliminacion(p_id_cliente);
   }
 
-
-
   function obtenerDatosEliminacion(id_cliente){
-
-const requestOptions = {
-  method: "GET",
-  redirect: "follow"
-};
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
 
 fetch("http://144.126.136.43/api/cliente/"+id_cliente, requestOptions)
   .then((response) => response.json())

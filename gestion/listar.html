@@ -38,28 +38,30 @@
         </div>
     </nav>
 </header>
-<body onload="">
+<body onload="listarGestion()">
     <br><br>
     <div class="container">
-        <h1>Lista de Gestión</h1>
+        <h1>Lista de gestión</h1>
         <div class="alert alert-primary" role="alert">
-            lista de gestión registrados en el sistema
+            Lista de gestión registrados en el sistema
         </div>
         <div>
-            <b>¿Necesitas crear un nueva lista de gestión</b>
+            <b>¿Necesitas crear un nueva lista de gestión?</b>
             <button class="btn btn-success btn-sm"><a class="nav-link text-white" href="crear.html"><b>Crear</b></a></button>
         </div>
         <hr>
         <div>
-            <table id="tbl_cliente" class="table table-columns">
+            <table id="tbl_gestion" class="table-columns">
                 <thead>
-                    <th>Identificador</th>
-                    <th>RUT usuario</th>
-                    <th>RUT cliente</th>
-                    <th>Identificador tipo gestión</th>
-                    <th>Identificador de resultado</th>
+                    <th>Id</th>
+                    <th>Nombres Usuario</th>
+                    <th>Apellidos Usuario</th>
+                    <th>Nombres Cliente</th>
+                    <th>Apellidos Cliente</th>
+                    <th>Resultado</th>
+                    <th>Tipo de gestion</th>
                     <th>Comentarios</th>
-                    <th>Fecha de resgistro</th>
+                    <th>Fecha de registro</th>
                     <th>Opciones</th>
                 </thead>
                 <tbody id="data">
