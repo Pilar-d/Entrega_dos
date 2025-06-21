@@ -44,7 +44,18 @@
         <h1>Agregar un resultado</h1>
         <hr>
         <div class="mb-3">
-            <h1>agregar formulario de resultado</h1>
+            <form action="">
+                <label class="form-label" for="txt_id_resultado">Ingrese <b>IDENTIFICADOR</b></label>
+                <input type="number" class="form-control" id="txt_id_resultado" placeholder="2145">
+                <br>
+                <label class="form-label" for="txt_nombre_resultado">Ingrese <b>NOMBRE</b></label>
+                <input type="text" class="form-control" id="txt_nombre_resultado" placeholder="Juan">
+                <br>
+                <label class="form-label" for="txt_fecha_registro">Ingrese <b>FECHA REGISTRO</b></label>
+                <input type="text" class="form-control"  name="" id="txt_fecha_registro">
+                <br>
+                <input type="button" class="btn btn-primary" value="Agregar" onclick="agregarResultado()">
+            </form>
         </div>
     </div>
 </body>
