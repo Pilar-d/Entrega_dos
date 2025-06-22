@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-            <img src="#" alt="" width="40" height="40" class="d-inline-block align-text-top">
+              <img src="/logo.png" alt="" width="40" height="40" class="d-inline-block align-text-top" style="border-radius: 20px;">
             Gestión - CRM
             </a>
             <div class="ms-auto">
@@ -38,13 +38,24 @@
         </div>
     </nav>
 </header>
-<body onload="">
+<body onload="obtenerIdActualizacion()">
     <br><br>
     <div class="container">
         <h1>Actualizar Resultado</h1>
         <hr>
         <div class="mb-3">
-           <h1>agregar formulario de resultado</h1>
+           <form action="">
+                <label class="form-label" for="txt_id_resultado">Ingrese <b>IDENTIFICADOR</b></label>
+                <input type="number" class="form-control" id="txt_id_resultado" placeholder="2145" readonly>
+                <br>
+                <label class="form-label" for="txt_nombre_resultado">Ingrese <b>NOMBRE</b></label>
+                <input type="text" class="form-control" id="txt_nombre_resultado" placeholder="Juan">
+                <br>
+                <label class="form-label" for="txt_fecha_registro">Ingrese <b>FECHA REGISTRO</b></label>
+                <input type="text" class="form-control"  name="" id="txt_fecha_registro">
+                <br>
+                <input type="button" class="btn btn-primary" value="Agregar" onclick="actualizarResultado()">
+            </form>
         </div>
     </div>
 </body>

@@ -127,19 +127,21 @@ function completarFormulario(element, index, arr){
     document.getElementById("txt_fecha_registro").value = fecha_registro;
 }
 
+//funcion eliminar
+
 function eliminarTipoGestion(){
+
     const requestOptions = {
         method: "DELETE",
         redirect: "follow"
     };
 
-    fetch("http://144.126.136.43/api/tipo_gestion/"+ g_id_tipo_gestion, requestOptions)
-        ,then((response)=> {
-            if(response.status == 200){
+    fetch("http://144.126.136.43/api/tipo_gestion/" + g_id_tipo_gestion, requestOptions)
+        .then((response) => {
+            if(response.status == 200) {
                 window.location.href = "listar.html";
             }
-
-        })
+        });
 }
 
 function obtenerIdEliminacion(){
@@ -158,15 +160,16 @@ function obtenerDatosEliminacion(id_tipo_gestion){
     };
 
     fetch("http://144.126.136.43/api/tipo_gestion/"+id_tipo_gestion, requestOptions)
-        .then((response)=> response.json())
-        .then((json)=> json.forEach(completarEtiqueta))
-        .then((result)=> console.log(result))
-        .catch((error)=> console.error(error));
+        .then((response) => response.json())
+        .then((json) => json.forEach(completarEtiqueta))
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
 }
 
 function completarEtiqueta(element, index, arr){
+    var id_tipo_gestion = element.id_tipo_gestion;
     var nombre_tipo_gestion = element.nombre_tipo_gestion;
 
-    document.getElementById("lbl_tipo_gestion").innerHTML = "<b>" + nombre_tipo_gestion + "<b>";
+    document.getElementById("lbl_tipo_gestion").innerHTML =  "<b>" + "Identificador: " + "</b>" + id_tipo_gestion + "<br>" + "</b>" + "<b>" + "Nombre: " + "</b>" + nombre_tipo_gestion + "<b>";
 
 }

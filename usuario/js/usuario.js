@@ -208,9 +208,11 @@ function actualizarUsuario(){
 
     function completarEtiqueta(element, index, arr){
 
+        var id_usuario = element.id_usuario;
+        var dv = element.dv;
         var nombresUsuario = element.nombres;
         var apellidosUsuario = element.apellidos;
 
-        document.getElementById("lbl_usuario").innerHTML = "<b>" + nombresUsuario + " " + apellidosUsuario + "</b>";
+        document.getElementById("lbl_usuario").innerHTML = "<b>" + "Rut: " + "</b>" + id_usuario + "-" + dv + "<br>" + "<b>" + "Nombres: " + "</b>" + nombresUsuario + "<br>" + "<b>" + "Apellidos: "+ "</b>" + apellidosUsuario;
     }
 

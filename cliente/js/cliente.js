@@ -160,55 +160,23 @@ function completarFormulario(element, index, arr){
   
 }
 
+//funcion eliminar
 
-//funcion de validacion - modificar y arreglar
-  function validacionFormulario(){
-    var id_cliente = document.getElementById("txt_id_cliente").value;
-    var dv_cliente = document.getElementById("txt_dv").value;
-    var nombre_cliente = document.getElementById("txt_nombres").value;
-    var apellido_cliente = document.getElementById("txt_celular").value;
-    var email_cliente = document.getElementById("txt_email").value;
-    var telefono_cliente = document.getElementById("txt_celular").value;
+ function eliminarCliente() {
 
-    if (id_cliente == ""){
-      alert("porfavor ingrese: RUT")
-    }
-    if(dv_cliente == ""){
-      alert("porfavor ingrese: DIGITO VERIFICADOR")
-    }
-    if(nombre_cliente == ""){
-      alert("porfavor ingrese: NOMBRES")
-    }
-    if(apellido_cliente == ""){
-      alert("porvafor infrese: APELLIDOS")
-    }
-    if(email_cliente){
-      alert("porfavor ingrese: EMAIL VALIDO")
-    }
-    if(telefono_cliente){
-      alert("porfavor ingrese: TELEFONO")
-    }
-    
-  }
-//
+  const requestOptions = {
+    method: "DELETE",
+    redirect: "follow"
+  };
 
-
-  //funcion eliminar
-
-  function eliminarCliente(){
-    const requestOptions = {
-      method: "DELETE",
-      redirect: "follow"
-    };
-
-    fetch("http://144.126.136.43/api/cliente/" + g_id_cliente, requestOptions)
+  fetch("http://144.126.136.43/api/cliente/" + g_id_cliente, requestOptions)
     .then((response) => {
-      if(response.status == 200){
-      //redireccionamos a la lista de clientes
-      window.location.href = "listar.html";
-    }
-    })
-  }
+      if (response.status == 200) {
+        // Redireccionamos a la lista de clientes
+        window.location.href = "listar.html";
+      }
+    });
+}
 
   function obtenerIdEliminacion(){
 
@@ -235,10 +203,54 @@ fetch("http://144.126.136.43/api/cliente/"+id_cliente, requestOptions)
 
 function completarEtiqueta(element, index, arr){
 
+  var id_cliente = element.id_cliente;
+  var dv = element.dv;
   var nombreCliente = element.nombres;
   var apellidoCliente = element.apellidos;
  
-  document.getElementById("lbl_cliente").innerHTML = "<b>" + nombreCliente + " " + apellidoCliente + "</b>";
+  document.getElementById("lbl_cliente").innerHTML =  " <b>" + " Rut: " + "</b>" + id_cliente + "-" + dv + " <br>" + "<b>" + "Nombres: " + "</b>" +  nombreCliente + " <br>" + " <b>" + "Apellidos: " + " </b>"   + apellidoCliente;
 }
 
 
+//validacion de campos
+
+function validacionFormulario() {
+  var id_cliente = document.getElementById("txt_id_cliente").value;
+  var dv_cliente = document.getElementById("txt_dv").value;
+  var nombre_cliente = document.getElementById("txt_nombres").value;
+  var apellido_cliente = document.getElementById("txt_apellidos").value; 
+  var email_cliente = document.getElementById("txt_email").value;
+  var telefono_cliente = document.getElementById("txt_celular").value;
+
+  // Expresiones regulares
+  var inputNumeros = /^[0-9]+$/;
+  var inputLetras = /^[a-zA-Z\s]+$/;
+
+  // Validación de campos vacíos y tipo de datos
+  if (id_cliente === "" || !inputNumeros) {
+    alert("Por favor ingrese un RUT válido");
+    return false;
+  }
+
+  if (dv_cliente === "" || !inputNumeros) {
+    alert("Por favor ingrese un dígito verificador válido");
+    return false;
+  }
+
+  if (nombre_cliente === "" || !inputLetras) {
+    alert("Por favor ingrese un nombre válido");
+    return false;
+  }
+
+  if (apellido_cliente === "" || !inputLetras) {
+    alert("Por favor ingrese un apellido válido (solo letras).");
+    return false;
+  }
+
+  if (telefono_cliente === "" || !inputNumeros) {
+    alert("Por favor ingrese un teléfono válido");
+    return false;
+  }
+
+  return true;
+}
