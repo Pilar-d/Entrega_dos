@@ -46,22 +46,22 @@
         <div class="mb-3">
             <form action="">
                 <label class="form-label" for="txt_id_cliente">Ingrese su <b>RUT</b></label>
-                <input type="number" class="form-control" id="txt_id_cliente" placeholder="11111111" readonly>
+                <input type="text" class="form-control" id="txt_id_cliente" placeholder="11111111" readonly>
                 <br>
                 <label class="form-label" for="txt_dv">Ingresa el digito <b>VERIFICADOR</b></label>
                 <input type="number" class="form-control" id="txt_dv" placeholder="1" readonly>
                 <br>
                 <label class="form-label" for="txt_nombres">Ingrese sus <b>NOMBRES</b></label>
-                <input type="text" class="form-control" id="txt_nombres" placeholder="Antonio">
+                <input type="text" maxlength="50" class="form-control" id="txt_nombres" placeholder="Antonio">
                 <br>
                 <label class="form-label" for="txt_apellidos">Ingrese sus <b>APELLIDOS</b></label>
-                <input type="text" class="form-control" id="txt_apellidos" placeholder="Perez">
+                <input type="text" maxlength="50" class="form-control" id="txt_apellidos" placeholder="Perez">
                 <br>
                 <label class="form-label" for="txt_email">Ingrese su <b>CORREO</b></label>
-                <input type="email" class="form-control" id="txt_email" placeholder="correo@example.com">
+                <input type="email" maxlength="30" class="form-control" id="txt_email" placeholder="correo@example.com">
                 <br>
                 <label class="form-label" for="txt_celular">Ingrese su <b>CELULAR</b></label>
-                <input type="tel" class="form-control" id="txt_celular" placeholder="953589765">
+                <input type="tel" maxlength="9" class="form-control" id="txt_celular" placeholder="953589765">
                 <br>
                 <label class="form-label" for="">Ingrese <b>FECHA REGISTRO</b></label>
                 <input type="datetime" class="form-control"  name="" id="">

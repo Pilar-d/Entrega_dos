@@ -1,7 +1,6 @@
 
 var g_id_resultado = "";
 
-
 function agregarResultado(){
     var id_resultado = document.getElementById("txt_id_resultado").value;
     var nombre_resultado = document.getElementById("txt_nombre_resultado").value;
@@ -112,7 +111,7 @@ function obtenerDatosActualizacion(id_resultado){
         .then((response) => response.json())
         .then((json) => json.forEach(completarFormulario))
         .then((result) => console.log(result))
-        .then((error) => console.error(error));
+        .catch((error) => console.error(error));
 }
 
 function completarFormulario(element, index, arr){
@@ -138,7 +137,7 @@ function eliminarResultado(){
                 //redireccionamos a la lista de resultado
                 window.location.href = "listar.html";
             }
-        } )
+        });
 }
 
 function obtenerIdEliminacion(){

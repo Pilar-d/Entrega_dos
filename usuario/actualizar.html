@@ -52,25 +52,25 @@
                 <input type="number" class="form-control" id="txt_dv_usuario" placeholder="1" readonly>
                 <br>
                 <label class="form-label" for="txt_nombres_usuario">Ingrese sus <b>NOMBRES</b></label>
-                <input type="text" class="form-control" id="txt_nombres_usuario" placeholder="Antonio">
+                <input type="text" maxlength="50" class="form-control" id="txt_nombres_usuario" placeholder="Antonio">
                 <br>
                 <label class="form-label" for="txt_apellidos_usuario">Ingrese sus <b>APELLIDOS</b></label>
-                <input type="text" class="form-control" id="txt_apellidos_usuario" placeholder="Perez">
+                <input type="text" maxlength="50" class="form-control" id="txt_apellidos_usuario" placeholder="Perez">
                 <br>
                 <label class="form-label" for="txt_email_usuario">Ingrese su <b>CORREO</b></label>
-                <input type="email" class="form-control" id="txt_email_usuario" placeholder="correo@example.com">
+                <input type="email" maxlength="50" class="form-control" id="txt_email_usuario" placeholder="correo@example.com">
                 <br>
                 <label class="form-label" for="txt_celular_usuario">Ingrese su <b>CELULAR</b></label>
-                <input type="tel" class="form-control" id="txt_celular_usuario" placeholder="953589765">
+                <input type="tel" maxlength="9" class="form-control" id="txt_celular_usuario" placeholder="953589765">
                 <br>
                 <label class="form-label" for="txt_username_usuario">Ingrese su <b>USERNAME</b></label>
-                <input type="tel" class="form-control" id="txt_username_usuario" placeholder="usuario">
+                <input type="text" maxlength="50" class="form-control" id="txt_username_usuario" placeholder="usuario">
                 <br>
                 <label class="form-label" for="txt_password_usuario">Ingrese su <b>PASSWORD</b></label>
-                <input type="tel" class="form-control" id="txt_password_usuario" placeholder="********">
+                <input type="text" maxlength="50" class="form-control" id="txt_password_usuario" placeholder="********">
                 <br>
-                <label class="form-label" for="">Ingrese <b>FECHA REGISTRO</b></label>
-                <input type="datetime" class="form-control"  name="" id="">
+                <label class="form-label" for="fecha_registro">Ingrese <b>FECHA REGISTRO</b></label>
+                <input type="datetime" class="form-control"  name="fecha_registro" id="fecha_registro">
                 <br>
                 <input type="button" class="btn btn-primary" value="Actualizar" onclick="actualizarUsuario();">
             </form>

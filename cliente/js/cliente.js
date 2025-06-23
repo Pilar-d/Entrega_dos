@@ -2,8 +2,13 @@
 
 var g_id_cliente = "";
 
-
 function agregarCliente(){
+
+  //agregar validacion
+
+  if(!validacionFormulario()){
+    return;
+  }
 
     //obtenemos los datos del formulario
     var id_cliente = document.getElementById("txt_id_cliente").value;
