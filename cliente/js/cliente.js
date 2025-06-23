@@ -17,6 +17,7 @@ function agregarCliente(){
     var txt_apellidos = document.getElementById("txt_apellidos").value;
     var txt_email = document.getElementById("txt_email").value;
     var txt_celular = document.getElementById("txt_celular").value;
+    var fecha_registro = document.getElementById("txt_fecha_registro").value;
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -28,7 +29,7 @@ const raw = JSON.stringify({
   "apellidos": txt_apellidos,
   "email": txt_email,
   "celular": txt_celular,
-  "fecha_registro": "2025-05-12 12:17"
+  "fecha_registro": fecha_registro
 });
 
 const requestOptions = {
@@ -155,6 +156,7 @@ function completarFormulario(element, index, arr){
   var apellidoCliente = element.apellidos;
   var emailCliente = element.email;
   var celularCliente = element.celular;
+  var fechaRegistro = element.fecha_registro;
 
   document.getElementById("txt_id_cliente").value = idCliente;
   document.getElementById("txt_dv").value = dvCliente; 
@@ -162,6 +164,7 @@ function completarFormulario(element, index, arr){
   document.getElementById("txt_apellidos").value = apellidoCliente;
   document.getElementById("txt_celular").value = celularCliente;
   document.getElementById("txt_email").value = emailCliente;
+  document.getElementById("txt_fecha_registro").value = fechaRegistro;
   
 }
 
@@ -217,45 +220,79 @@ function completarEtiqueta(element, index, arr){
 }
 
 
-//validacion de campos
+//validacion formulario
+
+// solo números
+function soloNumeros(input) {
+    input.value = input.value.replace(/[^0-9]/g, '');
+}
+
+// solo letras (incluye tildes y espacios)
+function soloLetras(input) {
+    input.value = input.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+}
+
+// solo dígito o letra 'k/K'
+function soloDV(input) {
+    input.value = input.value.replace(/[^0-9kK]/g, '');
+}
+
+// solo números, guiones, espacios y dos puntos (para fecha)
+function validarFechaRegistro(input) {
+    input.value = input.value.replace(/[^0-9:\-\s]/g, '').slice(0, 19);
+}
 
 function validacionFormulario() {
-  var id_cliente = document.getElementById("txt_id_cliente").value;
-  var dv_cliente = document.getElementById("txt_dv").value;
-  var nombre_cliente = document.getElementById("txt_nombres").value;
-  var apellido_cliente = document.getElementById("txt_apellidos").value; 
-  var email_cliente = document.getElementById("txt_email").value;
-  var telefono_cliente = document.getElementById("txt_celular").value;
+    const rut = document.getElementById("txt_id_cliente").value.trim();
+    const dv = document.getElementById("txt_dv").value.trim();
+    const nombres = document.getElementById("txt_nombres").value.trim();
+    const apellidos = document.getElementById("txt_apellidos").value.trim();
+    const email = document.getElementById("txt_email").value.trim();
+    const celular = document.getElementById("txt_celular").value.trim();
+    const fecha = document.getElementById("txt_fecha_registro").value.trim();
 
-  // Expresiones regulares
-  var inputNumeros = /^[0-9]+$/;
-  var inputLetras = /^[a-zA-Z\s]+$/;
+    const soloNumerosRegex = /^[0-9]+$/;
+    const soloLetrasRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const dvValido = /^[0-9kK]{1}$/;
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const celularValido = /^[0-9]{9}$/;
+    const fechaValida = /^[0-9:\-\s]{1,19}$/;
 
-  // Validación de campos vacíos y tipo de datos
-  if (id_cliente === "" || !inputNumeros) {
-    alert("Por favor ingrese un RUT válido");
-    return false;
-  }
+    if (rut === "" || !soloNumerosRegex.test(rut) || rut.length > 8) {
+        alert("Ingrese un RUT válido: solo números, máximo 8 dígitos.");
+        return false;
+    }
 
-  if (dv_cliente === "" || !inputNumeros) {
-    alert("Por favor ingrese un dígito verificador válido");
-    return false;
-  }
+    if (dv === "" || !dvValido.test(dv)) {
+        alert("Ingrese un dígito verificador válido (1 dígito o 'k').");
+        return false;
+    }
 
-  if (nombre_cliente === "" || !inputLetras) {
-    alert("Por favor ingrese un nombre válido");
-    return false;
-  }
+    if (nombres === "" || !soloLetrasRegex.test(nombres)) {
+        alert("Ingrese nombres válidos: solo letras.");
+        return false;
+    }
 
-  if (apellido_cliente === "" || !inputLetras) {
-    alert("Por favor ingrese un apellido válido (solo letras).");
-    return false;
-  }
+    if (apellidos === "" || !soloLetrasRegex.test(apellidos)) {
+        alert("Ingrese apellidos válidos: solo letras.");
+        return false;
+    }
 
-  if (telefono_cliente === "" || !inputNumeros) {
-    alert("Por favor ingrese un teléfono válido");
-    return false;
-  }
+    if (email === "" || !emailValido.test(email)) {
+        alert("Ingrese un correo electrónico válido.");
+        return false;
+    }
 
-  return true;
+    if (celular === "" || !celularValido.test(celular)) {
+        alert("Ingrese un celular válido: exactamente 8 números.");
+        return false;
+    }
+
+    if (fecha === "" || !fechaValida.test(fecha)) {
+        alert("Ingrese una fecha válida: solo números, guiones, espacios y dos puntos. Máximo 19 caracteres.");
+        return false;
+    }
+
+    return true;
 }
+

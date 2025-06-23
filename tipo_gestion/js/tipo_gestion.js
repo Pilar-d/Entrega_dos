@@ -4,9 +4,13 @@ var g_id_tipo_gestion = "";
 
 function agregarTipoGestion(){
 
+    if(!validacionFormulario()){
+    return;
+  }
+
     var id_tipo_gestion = document.getElementById("txt_id_tipo_gestion").value; 
     var nombre_tipo_gestion = document.getElementById("txt_nombre_tipo_gestion").value;
-    var fecha_registro = document.getElementById("txt_fecha_resgistro").value;
+    var fecha_registro = document.getElementById("txt_fecha_registro").value;
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -63,6 +67,7 @@ function completarFila(element,index,arr) {
 }
 
 function actualizarTipoGestion(){
+
 
     var txt_nombre_tipo_gestion = document.getElementById("txt_nombre_tipo_gestion").value;
 
@@ -172,4 +177,47 @@ function completarEtiqueta(element, index, arr){
 
     document.getElementById("lbl_tipo_gestion").innerHTML =  "<b>" + "Identificador: " + "</b>" + id_tipo_gestion + "<br>" + "</b>" + "<b>" + "Nombre: " + "</b>" + nombre_tipo_gestion + "<b>";
 
+}
+
+
+//validacion formulario
+
+// solo números
+function soloNumeros(input) {
+    input.value = input.value.replace(/[^0-9]/g, '');
+}
+// solo letras (incluye tildes y espacios)
+function soloLetras(input) {
+    input.value = input.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+}
+// solo números, guiones, espacios y dos puntos (para fecha)
+function validarFechaRegistro(input) {
+    input.value = input.value.replace(/[^0-9:\-\s]/g, '').slice(0, 19);
+}
+
+function validacionFormulario() {
+    const identificador = document.getElementById("txt_id_tipo_gestion").value.trim();
+    const nombres = document.getElementById("txt_nombre_tipo_gestion").value.trim();
+    const fecha = document.getElementById("txt_fecha_registro").value.trim();
+
+    const soloNumerosRegex = /^[0-9]+$/;
+    const soloLetrasRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const fechaValida = /^[0-9:\-\s]{1,19}$/;
+
+    if (identificador === "" || !soloNumerosRegex.test(identificador) || identificador.length > 8) {
+        alert("Ingrese un identificador válido: solo números, máximo 6 dígitos.");
+        return false;
+    }
+
+    if (nombres === "" || !soloLetrasRegex.test(nombres)) {
+        alert("Ingrese un nombre válido: solo letras.");
+        return false;
+    }
+
+    if (fecha === "" || !fechaValida.test(fecha)) {
+        alert("Ingrese una fecha válida: solo números, guiones, espacios y dos puntos. Máximo 21 caracteres.");
+        return false;
+    }
+
+    return true;
 }

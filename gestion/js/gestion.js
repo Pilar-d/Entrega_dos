@@ -11,6 +11,7 @@ function agregarGestion(){
   var txt_resultado = document.getElementById("txt_resultado").value;
   var txt_tipo_gestion = document.getElementById("txt_tipo_gestion").value;
   var txt_comentarios = document.getElementById("txt_comentarios").value;
+  var txt_fecha_registro = document.getElementById("txt_fecha_resgistro").value;
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -24,7 +25,7 @@ function agregarGestion(){
     "nombre_resultado": txt_resultado,
     "nombre_tipo_gestion": txt_tipo_gestion,
     "comentarios": txt_comentarios,
-    "fecha_registro": "2025-05-12 12:17"
+    "fecha_registro": txt_fecha_registro
   });
 
   const requestOptions = {
@@ -170,14 +171,14 @@ function completarFormulario(element, index, arr){
   var comentarios = element.comentarios;
   var fecha_registro = element.fecha_registro;
 
-  document.getElementById("txt_id_gestion").velue = id_gestion;
+  document.getElementById("txt_id_gestion").value = id_gestion;
   document.getElementById("txt_nombres_usuario").value = nombres_usuario;
   document.getElementById("txt_apellidos_usuario").value = apellidos_usuario;
   document.getElementById("txt_nombres_cliente").value = nombres_cliente;
-  document.getElementById("txt_apellidos_clientes").value = apellidos_cliente;
+  document.getElementById("txt_apellidos_cliente").value = apellidos_cliente;
   document.getElementById("txt_resultados").value = nombre_resultado;
   document.getElementById("txt_tipo_gestion").value = nombre_tipo_resultado;
-  document,getElementById("txt_comentarios").value = comentarios;
+  document.getElementById("txt_comentarios").value = comentarios;
   document.getElementById("txt_fecha_registro").value = fecha_registro;
 }
 

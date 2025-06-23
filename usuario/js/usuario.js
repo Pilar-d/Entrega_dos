@@ -2,6 +2,11 @@
 var g_id_usuario = ""
 
 function agregarUsuario(){
+
+    if(!validacionFormulario()){
+    return;
+  }
+
     var id_usuario = document.getElementById("txt_id_usuario").value;
     var dv_usuario = document.getElementById("txt_dv_usuario").value;
     var nombres_usuario = document.getElementById("txt_nombres_usuario").value;
@@ -10,6 +15,7 @@ function agregarUsuario(){
     var celular_usuario = document.getElementById("txt_celular_usuario").value;
     var username_usuario = document.getElementById("txt_username_usuario").value;
     var password_usuario = document.getElementById("txt_password_usuario").value;
+    var fecha_registro = document.getElementById("txt_fecha_registro").value;
 
 
 const myHeaders = new Headers();
@@ -24,7 +30,7 @@ const raw = JSON.stringify({
     "celular": celular_usuario,
     "username":username_usuario,
     "password": password_usuario,
-    "fecha_registro":"2025-05-12 12:17"
+    "fecha_registro": fecha_registro
 
 });
 
@@ -155,6 +161,7 @@ function actualizarUsuario(){
         var celular_usuario = element.celular;
         var username_usuario = element.username;
         var password_usuario = element.password;
+        var fecha_registro = element.fecha_registro;
 
         document.getElementById("txt_id_usuario").value = id_usuario;
         document.getElementById("txt_dv_usuario").value = dv_usuario;
@@ -164,6 +171,7 @@ function actualizarUsuario(){
         document.getElementById("txt_celular_usuario").value = celular_usuario;
         document.getElementById("txt_username_usuario").value = username_usuario;
         document.getElementById("txt_password_usuario").value = password_usuario;
+        document.getElementById("txt_fecha_registro").value = fecha_registro;
 
     }
 
@@ -216,3 +224,92 @@ function actualizarUsuario(){
         document.getElementById("lbl_usuario").innerHTML = "<b>" + "Rut: " + "</b>" + id_usuario + "-" + dv + "<br>" + "<b>" + "Nombres: " + "</b>" + nombresUsuario + "<br>" + "<b>" + "Apellidos: "+ "</b>" + apellidosUsuario;
     }
 
+
+
+    //validacion formulario
+
+// solo números
+function soloNumeros(input) {
+    input.value = input.value.replace(/[^0-9]/g, '');
+}
+
+// solo letras (incluye tildes y espacios)
+function soloLetras(input) {
+    input.value = input.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+}
+
+// solo dígito o letra 'k/K'
+function soloDV(input) {
+    input.value = input.value.replace(/[^0-9kK]/g, '');
+}
+
+// solo números, guiones, espacios y dos puntos (para fecha)
+function validarFechaRegistro(input) {
+    input.value = input.value.replace(/[^0-9:\-\s]/g, '').slice(0, 19);
+}
+
+function validacionFormulario() {
+    const rut = document.getElementById("txt_id_usuario").value.trim();
+    const dv = document.getElementById("txt_dv_usuario").value.trim();
+    const nombres = document.getElementById("txt_nombres_usuario").value.trim();
+    const apellidos = document.getElementById("txt_apellidos_usuario").value.trim();
+    const email = document.getElementById("txt_email_usuario").value.trim();
+    const celular = document.getElementById("txt_celular_usuario").value.trim();
+    const username = document.getElementById("txt_username_usuario").value.trim();
+    const password = document.getElementById("txt_password_usuario").value.trim();
+    const fecha = document.getElementById("txt_fecha_registro").value.trim();
+
+    const soloNumerosRegex = /^[0-9]+$/;
+    const soloLetrasRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const dvValido = /^[0-9kK]{1}$/;
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const celularValido = /^[0-9]{9}$/;
+    const fechaValida = /^[0-9:\-\s]{1,19}$/;
+
+    if (rut === "" || !soloNumerosRegex.test(rut) || rut.length > 8) {
+        alert("Ingrese un RUT válido: solo números, máximo 8 dígitos.");
+        return false;
+    }
+
+    if (dv === "" || !dvValido.test(dv)) {
+        alert("Ingrese un dígito verificador válido (1 dígito o 'k').");
+        return false;
+    }
+
+    if (nombres === "" || !soloLetrasRegex.test(nombres)) {
+        alert("Ingrese nombres válidos: solo letras.");
+        return false;
+    }
+
+    if (apellidos === "" || !soloLetrasRegex.test(apellidos)) {
+        alert("Ingrese apellidos válidos: solo letras.");
+        return false;
+    } 
+
+    if (email === "" || !emailValido.test(email)) {
+        alert("Ingrese un correo electrónico válido.");
+        return false;
+    }
+
+    if (celular === "" || !celularValido.test(celular)) {
+        alert("Ingrese un celular válido: exactamente 8 números.");
+        return false;
+    }
+
+    if (username === "") {
+        alert("Ingrese un username válido");
+        return false;
+    }
+
+    if (password === "") {
+        alert("Ingrese un password válido");
+        return false;
+    }
+
+    if (fecha === "" || !fechaValida.test(fecha)) {
+        alert("Ingrese una fecha válida: solo números, guiones, espacios y dos puntos. Máximo 21 caracteres.");
+        return false;
+    }
+
+    return true;
+}

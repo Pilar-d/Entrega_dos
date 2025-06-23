@@ -46,22 +46,22 @@
         <div class="mb-3">
             <form action="">
                 <label class="form-label" for="txt_id_usuario">Ingrese su <b>RUT</b></label>
-                <input type="text" maxlength="8" class="form-control" id="txt_id_usuario" placeholder="21456789">
+                <input type="text" maxlength="8" oninput="soloNumeros(this)" class="form-control" id="txt_id_usuario" placeholder="21456789">
                 <br>
                 <label class="form-label" for="txt_dv_usuario">Ingresa el digito <b>VERIFICADOR</b></label>
-                <input type="text" maxlength="1" class="form-control" id="txt_dv_usuario" placeholder="4">
+                <input type="text" maxlength="1" oninput="soloDV(this)" class="form-control" id="txt_dv_usuario" placeholder="4">
                 <br>
                 <label class="form-label" for="txt_nombres_usuario">Ingrese sus <b>NOMBRES</b></label>
-                <input type="text" maxlength="50" class="form-control" id="txt_nombres_usuario" placeholder="Antonio">
+                <input type="text" maxlength="50" class="form-control" oninput="soloLetras(this)" id="txt_nombres_usuario" placeholder="Antonio">
                 <br>
                 <label class="form-label" for="txt_apellidos_usuario">Ingrese sus <b>APELLIDOS</b></label>
-                <input type="text" maxlength="50" class="form-control" id="txt_apellidos_usuario" placeholder="Perez">
+                <input type="text" maxlength="50" class="form-control"oninput="soloLetras(this)" id="txt_apellidos_usuario" placeholder="Perez">
                 <br>
                 <label class="form-label" for="txt_email_usuario">Ingrese su <b>CORREO</b></label>
                 <input type="email" maxlength="50" class="form-control" id="txt_email_usuario" placeholder="ejemplo@example.com">
                 <br>
                 <label class="form-label" for="txt_celular_usuario">Ingrese su <b>CELULAR</b></label>
-                <input type="tel" maxlength="9" class="form-control" id="txt_celular_usuario" placeholder="953589765">
+                <input type="tel" maxlength="9" class="form-control" oninput="soloNumeros(this)" id="txt_celular_usuario" placeholder="953589765">
                 <br>
                 <label class="form-label" for="txt_username_usuario">Ingrese su <b>USERNAME</b></label>
                 <input type="text" maxlength="50" class="form-control" id="txt_username_usuario" placeholder="usuario">
@@ -69,8 +69,8 @@
                 <label class="form-label" for="txt_password_usuario">Ingrese su <b>PASSWORD</b></label>
                 <input type="password" maxlength="50" class="form-control" id="txt_password_usuario" placeholder="*********">
                 <br>
-                <label class="form-label" for="fecha_registro_usuario">Ingrese <b>FECHA REGISTRO</b></label>
-                <input type="datetime" class="form-control"  name="" id="fecha_registro_usuario">
+                <label class="form-label" for="txt_fecha_registro">Ingrese <b>FECHA REGISTRO</b></label>
+                <input type="datetime" maxlength="21" class="form-control" oninput="validarFechaRegistro(this)" name="txt_fecha_registro" id="txt_fecha_registro" placeholder="2025-10-25 20:00:00">
                 <br>
                 <input type="button" class="btn btn-primary" value="Agregar" onclick="agregarUsuario()">
             </form>
