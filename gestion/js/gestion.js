@@ -11,7 +11,7 @@ function agregarGestion(){
   var txt_resultado = document.getElementById("txt_resultado").value;
   var txt_tipo_gestion = document.getElementById("txt_tipo_gestion").value;
   var txt_comentarios = document.getElementById("txt_comentarios").value;
-  var txt_fecha_registro = document.getElementById("txt_fecha_resgistro").value;
+  var txt_fecha_registro = document.getElementById("txt_fecha_registro").value;
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -20,8 +20,8 @@ function agregarGestion(){
     "id_gestion": id_gestion,
     "nombres_usuario": txt_nombres_usuario,
     "apellidos_usuario": txt_apellidos_usuario,
-    "nombres_clientes": txt_nombres_cliente,
-    "apellidos_usuario": txt_apellidos_cliente,
+    "nombres_cliente": txt_nombres_cliente,
+    "apellidos_cliente": txt_apellidos_cliente,
     "nombre_resultado": txt_resultado,
     "nombre_tipo_gestion": txt_tipo_gestion,
     "comentarios": txt_comentarios,
@@ -35,15 +35,43 @@ function agregarGestion(){
     redirect: "follow"
   };
 
-  fetch("http://144.126.136.43/dynamic", requestOptions)
+  fetch("http://144.126.136.43/api/gestion", requestOptions)
     .then((response)=> response.text())
     .then((result)=> {
         console.log(result);
         window.location.href = "listar.html";
     })
     .catch((error)=> console.error(error))
+
+
+
+    
 }
 
+
+function agregar(){
+  const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "query": "select g.id_gestion,u.nombres as nombres_usuario,u.apellidos as apellidos_usuario,c.nombres as nombres_cliente,c.apellidos as apellidos_cliente, r.nombre_resultado,tg.nombre_tipo_gestion,g.comentarios, g.fecha_registro from gestion g,usuario u,cliente c,resultado r,tipo_gestion tg where g.id_usuario = u.id_usuario and g.id_cliente = c.id_cliente and g.id_resultado = r.id_resultado and g.id_tipo_gestion = tg.id_tipo_gestion"
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://144.126.136.43/dynamic", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+
+
+
+}
 
 
 

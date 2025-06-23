@@ -259,7 +259,7 @@ function validacionFormulario() {
     const fechaValida = /^[0-9:\-\s]{1,19}$/;
 
     if (rut === "" || !soloNumerosRegex.test(rut) || rut.length > 8) {
-        alert("Ingrese un RUT válido: solo números, máximo 8 dígitos.");
+        alert("Ingrese un RUT válido, solo números 8 dígitos.");
         return false;
     }
 
@@ -269,12 +269,12 @@ function validacionFormulario() {
     }
 
     if (nombres === "" || !soloLetrasRegex.test(nombres)) {
-        alert("Ingrese nombres válidos: solo letras.");
+        alert("Ingrese nombres válidos, solo letras.");
         return false;
     }
 
     if (apellidos === "" || !soloLetrasRegex.test(apellidos)) {
-        alert("Ingrese apellidos válidos: solo letras.");
+        alert("Ingrese apellidos válidos, solo letras.");
         return false;
     }
 
@@ -284,12 +284,12 @@ function validacionFormulario() {
     }
 
     if (celular === "" || !celularValido.test(celular)) {
-        alert("Ingrese un celular válido: exactamente 8 números.");
+        alert("Ingrese un celular válido de 8 números.");
         return false;
     }
 
     if (fecha === "" || !fechaValida.test(fecha)) {
-        alert("Ingrese una fecha válida: solo números, guiones, espacios y dos puntos. Máximo 19 caracteres.");
+        alert("Ingrese una fecha válida: ejemplo 2025-10-05 20:00:00");
         return false;
     }
 

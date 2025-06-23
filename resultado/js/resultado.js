@@ -9,7 +9,7 @@ function agregarResultado(){
 
     var id_resultado = document.getElementById("txt_id_resultado").value;
     var nombre_resultado = document.getElementById("txt_nombre_resultado").value;
-    var fecha_registro = document.getElementById("txt_fecha_registro")
+    var fecha_registro = document.getElementById("txt_fecha_registro").value;
     
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -179,8 +179,6 @@ function completarEtiqueta(element, index, arr){
 
 }
 
-
-
 //validacion formulario
 
 // solo números
@@ -205,20 +203,21 @@ function validacionFormulario() {
     const soloLetrasRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
     const fechaValida = /^[0-9:\-\s]{1,19}$/;
 
-    if (identificador === "" || !soloNumerosRegex.test(identificador) || identificador.length > 10) {
-        alert("Ingrese un identificador válido: solo números, máximo 10 dígitos.");
+    if (identificador === "" || !soloNumerosRegex.test(identificador) || identificador.length > 8) {
+        alert("Ingrese un identificador válido, solo números");
         return false;
     }
 
     if (nombres === "" || !soloLetrasRegex.test(nombres)) {
-        alert("Ingrese un nombre válido: solo letras.");
+        alert("Ingrese un nombre válido, solo letras.");
         return false;
     }
 
     if (fecha === "" || !fechaValida.test(fecha)) {
-        alert("Ingrese una fecha válida: solo números, guiones, espacios y dos puntos. Máximo 21 caracteres.");
+        alert("Ingrese una fecha válida: ejemplo 2025-10-05 20:00:00");
         return false;
     }
 
     return true;
+
 }

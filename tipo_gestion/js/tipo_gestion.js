@@ -205,17 +205,17 @@ function validacionFormulario() {
     const fechaValida = /^[0-9:\-\s]{1,19}$/;
 
     if (identificador === "" || !soloNumerosRegex.test(identificador) || identificador.length > 8) {
-        alert("Ingrese un identificador válido: solo números, máximo 6 dígitos.");
+        alert("Ingrese un identificador válido, solo números");
         return false;
     }
 
     if (nombres === "" || !soloLetrasRegex.test(nombres)) {
-        alert("Ingrese un nombre válido: solo letras.");
+        alert("Ingrese un nombre válido, solo letras.");
         return false;
     }
 
     if (fecha === "" || !fechaValida.test(fecha)) {
-        alert("Ingrese una fecha válida: solo números, guiones, espacios y dos puntos. Máximo 21 caracteres.");
+        alert("Ingrese una fecha válida: ejemplo 2025-10-05 20:00:00");
         return false;
     }
 
